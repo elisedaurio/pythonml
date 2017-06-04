@@ -8,6 +8,7 @@ from __future__ import print_function
 
 import argparse
 import sys
+import time
 
 from tensorflow.examples.tutorials.mnist import input_data
 
@@ -83,7 +84,9 @@ train_step = tf.train.AdamOptimizer(1e-4).minimize(cross_entropy)
 correct_prediction = tf.equal(tf.argmax(y_conv,1), tf.argmax(y_,1))
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 sess.run(tf.global_variables_initializer())
-for i in range(100):
+time.ctime()
+time.strftime('%l:%M%p %Z on %b %d, %Y')
+for i in range(20000):
   batch = mnist.train.next_batch(50)
   if i%100 == 0:
     train_accuracy = accuracy.eval(feed_dict={
@@ -93,3 +96,4 @@ for i in range(100):
 
 print("test accuracy %g"%accuracy.eval(feed_dict={
     x: mnist.test.images, y_: mnist.test.labels, keep_prob: 1.0}))
+time.strftime('%l:%M%p %Z on %b %d, %Y')

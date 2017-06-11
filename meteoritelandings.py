@@ -11,7 +11,9 @@ import argparse
 import sys
 import time
 
-from tensorflow.examples.tutorials.mnist import input_data
+# Plotting support for determining equation that I will need to graph
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 import tensorflow as tf
 
@@ -43,13 +45,15 @@ with tf.Session() as sess:
 	coord = tf.train.Coordinator()
 	threads = tf.train.start_queue_runners(coord=coord)
 
-	for i in range (1000):
+	for i in range (10):
 		# Grab one sample
 		example, recid, recfall, recmass = sess.run([features, col1, col2, col3])
 		print (recid, recfall, recmass, example)
 
 	coord.request_stop()
 	coord.join(threads)
+
+
 
 
 # Build the variables
